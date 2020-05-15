@@ -24,6 +24,12 @@
         }
 
         function updateAll() {
+            moveAll();
+            drawAll();
+        }
+
+        function moveAll() {
+            //Ball movement
             ballX += ballSpeedX;
             ballY += ballSpeedY;
             if(ballX > canvas.width) {
@@ -38,9 +44,10 @@
             if(ballY > 0) {
                 ballSpeedY *= -1;
             }
-           
+        }
 
-              //Make our canvas
+        function drawAll(){
+            //Make our canvas
             canvasContext.fillStyle = 'black';
             canvasContext.fillRect(0,0, canvas.width, canvas.height);
 
@@ -50,7 +57,6 @@
             canvasContext.arc(ballX,ballY, 10, Math.PI*2, true);
             canvas.Context.fill();
         }
-        
         
     </script>
 
