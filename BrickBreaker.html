@@ -44,20 +44,25 @@
             drawAll();
         }
 
+        function ballReset() {
+            ballX = canvas.width/2;
+            ballY = canvas.height/2;
+        }
+
         function moveAll() {
             //Ball movement
             ballX += ballSpeedX;
             ballY += ballSpeedY;
-            if(ballX > canvas.width) {
+            if(ballX > canvas.width) { //left
                 ballSpeedX *= -1;
             }
-            if(ballX > 0) {
+            if(ballX > 0) { //right
                 ballSpeedX *= -1;
             }
-            if(ballY > canvas.height) {
+            if(ballY > canvas.height) { //top
                 ballSpeedY *= -1;
             }
-            if(ballY > 0) {
+            if(ballY > 0) { //bottom
                 ballSpeedY *= -1;
             }
         }
