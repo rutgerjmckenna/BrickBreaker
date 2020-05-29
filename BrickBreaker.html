@@ -15,6 +15,7 @@
 
         const PADDLE_WIDTH = 100;
         const PADDLE_THICKNESS = 10;
+        const PADDLE_DIST_FROM_EDGE = 60;
         var paddleX = 400;
 
         var canvas, canvasContext;
@@ -65,6 +66,17 @@
             if(ballY > 0) { //bottom
                 ballSpeedY *= -1;
             }
+
+            var paddleTopEdgeY = canvas.height-PADDLE_DIST_FROM_EDGE;
+            var paddleBottomEdgeY = paddleTopEdgeY + PADDLE_THICKNESS;
+            var paddleLeftEdgeX = paddleX;
+            var paddleRightEdgeX = paddleTopEdgeX + PADDLE_WIDTH;
+            if ( ballY > paddleTopEdgeY && // below top of paddle
+                 ballY < paddleBottomEdgeY && // above bottom of paddle
+                 ballY > paddleLeftEdgeX && // right of the left side of the paddle
+                 ballX < paddleRightEdgeX) { // left of the right side of the paddle
+                    ballSpeedY *= -1;
+                 }
         }
 
         function drawAll(){
@@ -74,7 +86,7 @@
             //Draw our circle
             colorCircle(ballX, ballY, 10, 'white');
 
-            colorRect(paddleX, canvas.height-PADDLE_THICKNESS, PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
+            colorRect(paddleX, canvas.height-PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
         }
 
         function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
